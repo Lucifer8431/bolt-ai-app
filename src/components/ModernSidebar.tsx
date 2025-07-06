@@ -36,8 +36,10 @@ export function ModernSidebar() {
 
   // Update current page in memory when location changes
   useEffect(() => {
-    updateCurrentPage(location.pathname);
-  }, [location.pathname, updateCurrentPage]);
+    if (location.pathname !== state.currentPage) {
+      updateCurrentPage(location.pathname);
+    }
+  }, [location.pathname, state.currentPage, updateCurrentPage]);
 
   const filteredNavigation = navigation.filter((item) =>
     item.name.toLowerCase().includes(searchQuery.toLowerCase()),
