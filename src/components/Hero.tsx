@@ -185,7 +185,7 @@ export function Hero() {
               className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16"
             >
               <Link
-                to="/chat"
+                to="/dashboard"
                 className="group relative px-8 py-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white text-lg font-semibold rounded-xl hover:from-purple-600 hover:to-pink-600 transition-all duration-300 flex items-center space-x-3 shadow-2xl hover:shadow-purple-500/25 transform hover:-translate-y-1"
               >
                 <MessageSquare className="w-5 h-5" />
