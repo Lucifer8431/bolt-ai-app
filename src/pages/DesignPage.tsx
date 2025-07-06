@@ -220,6 +220,10 @@ export function DesignPage() {
                 ? "flex items-center space-x-4 p-4"
                 : "overflow-hidden"
             }`}
+            style={{
+              background: "linear-gradient(135deg, #8b5cf6, #a855f7)",
+              boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+            }}
           >
             {/* Thumbnail */}
             <div
