@@ -125,7 +125,11 @@ export function DashboardPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: index * 0.1 }}
-            className="bg-gray-800 rounded-xl p-6 border border-gray-700 hover:border-gray-600 transition-all duration-200"
+            className="rounded-xl p-6 border border-purple-500/20 hover:border-purple-500/40 transition-all duration-200"
+            style={{
+              background: "linear-gradient(135deg, #8b5cf6, #a855f7)",
+              boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+            }}
           >
             <div className="flex items-center justify-between mb-4">
               <div
