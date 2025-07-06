@@ -1,13 +1,22 @@
-import React, { ReactNode } from 'react';
-import { motion } from 'framer-motion';
-import { Sidebar } from './Sidebar';
-import { Header } from './Header';
+import React, { ReactNode } from "react";
+import { motion } from "framer-motion";
+import { useLocation } from "react-router-dom";
+import { Sidebar } from "./Sidebar";
+import { Header } from "./Header";
 
 interface LayoutProps {
   children: ReactNode;
 }
 
 export function Layout({ children }: LayoutProps) {
+  const location = useLocation();
+  const isLandingPage =
+    location.pathname === "/" || location.pathname === "/landing";
+
+  if (isLandingPage) {
+    return <>{children}</>;
+  }
+
   return (
     <div className="min-h-screen animated-bg">
       <Header />
@@ -19,12 +28,10 @@ export function Layout({ children }: LayoutProps) {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5, ease: "easeOut" }}
         >
-          <div className="max-w-7xl mx-auto">
-            {children}
-          </div>
+          <div className="max-w-7xl mx-auto">{children}</div>
         </motion.main>
       </div>
-      
+
       {/* Background decorations */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden">
         <motion.div
