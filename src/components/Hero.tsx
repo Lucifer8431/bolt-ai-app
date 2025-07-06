@@ -58,6 +58,39 @@ export function Hero() {
 
   return (
     <div className="min-h-screen relative overflow-hidden">
+      {/* Navigation */}
+      <motion.nav
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="fixed top-0 left-0 right-0 z-50 glass-light border-b border-purple-500/20"
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16">
+            <Link to="/" className="flex items-center space-x-3">
+              <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg flex items-center justify-center">
+                <Rocket className="w-6 h-6 text-white" />
+              </div>
+              <span className="text-xl font-bold gradient-text">AIX.dev</span>
+            </Link>
+
+            <div className="flex items-center space-x-4">
+              <Link
+                to="/dashboard"
+                className="px-4 py-2 text-gray-300 hover:text-white transition-colors"
+              >
+                Dashboard
+              </Link>
+              <Link
+                to="/chat"
+                className="px-6 py-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-lg hover:from-purple-600 hover:to-pink-600 transition-all duration-300"
+              >
+                Start Building
+              </Link>
+            </div>
+          </div>
+        </div>
+      </motion.nav>
+
       {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-purple-900/20 to-violet-900/30" />
 
