@@ -55,6 +55,9 @@ function AppContent() {
             <Route path="/projects" element={<ProjectsPage />} />
             <Route path="/design" element={<DesignPage />} />
             <Route path="/settings" element={<Settings />} />
+            {/* Redirect from app routes to dashboard */}
+            <Route path="/app" element={<DashboardPage />} />
+            <Route path="/app/*" element={<DashboardPage />} />
           </Routes>
         </div>
       </main>
