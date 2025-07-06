@@ -159,7 +159,11 @@ export function ModernSidebar() {
         {/* AI Status */}
         <div className="p-4 border-b border-gray-800/50">
           <motion.div
-            className="glass-light rounded-xl p-4 hover:bg-gray-800/20 transition-all duration-300"
+            className="rounded-xl p-4 hover:scale-105 transition-all duration-300 border border-purple-500/30"
+            style={{
+              background: "linear-gradient(135deg, #8b5cf6, #a855f7)",
+              boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+            }}
             whileHover={{ scale: 1.02 }}
           >
             <div className="flex items-center justify-between mb-3">
