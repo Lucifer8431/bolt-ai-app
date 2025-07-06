@@ -2,19 +2,17 @@ import React, { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Send,
-  Paperclip,
-  Smile,
-  Code,
-  Image,
-  Zap,
-  Brain,
+  Plus,
+  BarChart3,
+  Layout,
+  CreditCard,
+  Presentation,
+  MoreHorizontal,
   Sparkles,
-  MessageCircle,
 } from "lucide-react";
 import { useChat } from "../hooks/useChat";
 import { teamMembers } from "../data/teamMembers";
 import { Message } from "../types";
-import { format } from "date-fns";
 
 export function ChatWindow() {
   const { messages, isTyping, sendMessage } = useChat();
@@ -53,219 +51,190 @@ export function ChatWindow() {
       : null;
   };
 
+  const quickActions = [
+    { icon: BarChart3, label: "Dashboard", color: "from-blue-500 to-cyan-500" },
+    { icon: Layout, label: "Startup UI", color: "from-purple-500 to-pink-500" },
+    {
+      icon: CreditCard,
+      label: "Business Card",
+      color: "from-green-500 to-emerald-500",
+    },
+    { icon: Presentation, label: "PPT", color: "from-orange-500 to-red-500" },
+    {
+      icon: MoreHorizontal,
+      label: "More",
+      color: "from-gray-500 to-slate-500",
+    },
+  ];
+
   return (
-    <div className="h-full flex flex-col">
-      {/* Header */}
-      <motion.div
-        className="glass-card rounded-t-2xl p-6 border border-purple-500/20 border-b-0"
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-      >
-        <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-3">
-            <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center">
-              <MessageCircle className="w-6 h-6 text-white" />
-            </div>
-            <div>
-              <h1 className="text-2xl font-bold gradient-text">AI Chat Hub</h1>
-              <div className="text-gray-400 flex items-center space-x-2">
-                <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
-                <span>
-                  {teamMembers.filter((m) => m.status === "online").length}{" "}
-                  agents online
-                </span>
-              </div>
+    <div className="min-h-screen bg-black flex flex-col items-center justify-center p-4">
+      {/* Main Content Container */}
+      <div className="w-full max-w-4xl mx-auto">
+        {/* Hero Text */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="text-center mb-12"
+        >
+          <h1 className="text-5xl lg:text-7xl font-bold text-white mb-4">
+            Dream, Chat, Create
+          </h1>
+          <div className="flex items-center justify-center space-x-2 mb-8">
+            <h2 className="text-xl lg:text-2xl text-gray-300">
+              Your 24/7 AI Team
+            </h2>
+            <div className="flex space-x-1">
+              <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
+              <div className="w-2 h-2 bg-purple-400 rounded-full"></div>
+              <div className="w-2 h-2 bg-pink-400 rounded-full"></div>
+              <div className="w-2 h-2 bg-green-400 rounded-full"></div>
+              <div className="w-2 h-2 bg-yellow-400 rounded-full"></div>
             </div>
           </div>
+        </motion.div>
 
-          <div className="flex items-center space-x-2">
-            {teamMembers.slice(0, 4).map((member, index) => (
-              <motion.div
-                key={member.id}
-                className="relative"
-                initial={{ opacity: 0, scale: 0 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: index * 0.1 }}
-              >
-                <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center text-sm">
-                  {member.avatar}
-                </div>
-                <div
-                  className={`absolute -bottom-1 -right-1 w-3 h-3 ${
-                    member.status === "online" ? "bg-green-400" : "bg-gray-500"
-                  } rounded-full border border-gray-800`}
-                />
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </motion.div>
-
-      {/* Messages */}
-      <div className="flex-1 overflow-y-auto p-6 space-y-6 glass-card border-x border-purple-500/20">
-        {messages.length === 0 && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-center py-12"
-          >
-            <div className="w-16 h-16 bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
-              <Brain className="w-8 h-8 text-purple-400" />
-            </div>
-            <h3 className="text-xl font-semibold text-white mb-2">
-              Welcome to your AI Team!
-            </h3>
-            <p className="text-gray-400 max-w-md mx-auto mb-6">
-              Ask your AI team anything - from code generation to project
-              planning, they're here to help.
-            </p>
-
-            {/* Quick starter prompts */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 max-w-2xl mx-auto">
-              {[
-                "Help me build a React component",
-                "Design a landing page layout",
-                "Create a project timeline",
-                "Write unit tests for my code",
-              ].map((prompt, index) => (
-                <motion.button
-                  key={index}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.1 * index }}
-                  onClick={() => setNewMessage(prompt)}
-                  className="p-3 glass-light border border-purple-500/20 rounded-lg text-sm text-gray-300 hover:bg-purple-500/10 hover:border-purple-500/30 transition-all duration-300 text-left"
-                >
-                  "{prompt}"
-                </motion.button>
-              ))}
-            </div>
-          </motion.div>
-        )}
-
-        <AnimatePresence>
-          {messages.map((message, index) => {
-            const sender = getSenderInfo(message.senderId);
-            if (!sender) return null;
-
-            return (
-              <motion.div
-                key={message.id}
-                initial={{ opacity: 0, y: 20, scale: 0.95 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                exit={{ opacity: 0, y: -20, scale: 0.95 }}
-                transition={{ duration: 0.4, delay: index * 0.05 }}
-                className={`flex ${sender.isUser ? "justify-end" : "justify-start"}`}
-              >
-                <div
-                  className={`max-w-xs lg:max-w-md ${sender.isUser ? "order-2" : "order-1"}`}
-                >
-                  <div
-                    className={`relative p-4 rounded-2xl ${
-                      sender.isUser
-                        ? "bg-gradient-to-br from-purple-500 to-pink-500 text-white ml-4"
-                        : "glass-light border border-purple-500/20 text-gray-200 mr-4"
-                    }`}
-                  >
-                    {!sender.isUser && (
-                      <div className="flex items-center space-x-2 mb-2">
-                        <span className="text-lg">{sender.avatar}</span>
-                        <span className="text-sm font-medium text-purple-400">
-                          {sender.name}
-                        </span>
-                        <Brain className="w-3 h-3 text-purple-400" />
-                      </div>
-                    )}
-
-                    <p className="text-sm leading-relaxed">{message.content}</p>
-
-                    <div className="flex items-center justify-between mt-3">
-                      <p
-                        className={`text-xs ${
-                          sender.isUser ? "text-purple-100" : "text-gray-400"
-                        }`}
-                      >
-                        {format(message.timestamp, "HH:mm")}
-                      </p>
-                    </div>
+        {/* Chat Interface */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.2 }}
+          className="bg-gradient-to-br from-purple-900/40 to-blue-900/40 backdrop-blur-xl rounded-3xl border border-white/10 p-8 mb-8"
+          style={{ minHeight: "400px" }}
+        >
+          {/* Messages Area */}
+          <div className="min-h-[300px] mb-6">
+            {messages.length === 0 ? (
+              <div className="flex items-center justify-center h-full">
+                <div className="text-center">
+                  <div className="w-16 h-16 bg-white/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                    <Sparkles className="w-8 h-8 text-purple-300" />
                   </div>
+                  <p className="text-gray-300 text-lg">
+                    Tell the AI what you want to build...
+                  </p>
                 </div>
-              </motion.div>
-            );
-          })}
-        </AnimatePresence>
-
-        {isTyping && (
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.8 }}
-            className="flex justify-start"
-          >
-            <div className="glass-light border border-purple-500/20 px-6 py-4 rounded-2xl mr-4">
-              <div className="flex items-center space-x-3">
-                <div className="w-8 h-8 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg flex items-center justify-center">
-                  <Brain className="w-4 h-4 text-white" />
-                </div>
-                <div className="typing-indicator">
-                  <div className="typing-dot"></div>
-                  <div className="typing-dot"></div>
-                  <div className="typing-dot"></div>
-                </div>
-                <span className="text-xs text-purple-400">AI thinking...</span>
               </div>
+            ) : (
+              <div className="space-y-4 max-h-[300px] overflow-y-auto">
+                <AnimatePresence>
+                  {messages.map((message, index) => {
+                    const sender = getSenderInfo(message.senderId);
+                    if (!sender) return null;
+
+                    return (
+                      <motion.div
+                        key={message.id}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -20 }}
+                        className={`flex ${sender.isUser ? "justify-end" : "justify-start"}`}
+                      >
+                        <div
+                          className={`max-w-xs lg:max-w-md p-4 rounded-2xl ${
+                            sender.isUser
+                              ? "bg-white/20 text-white"
+                              : "bg-black/30 text-gray-200"
+                          }`}
+                        >
+                          {!sender.isUser && (
+                            <div className="flex items-center space-x-2 mb-2">
+                              <span className="text-sm">{sender.avatar}</span>
+                              <span className="text-xs font-medium text-purple-300">
+                                {sender.name}
+                              </span>
+                            </div>
+                          )}
+                          <p className="text-sm leading-relaxed">
+                            {message.content}
+                          </p>
+                        </div>
+                      </motion.div>
+                    );
+                  })}
+                </AnimatePresence>
+
+                {isTyping && (
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    className="flex justify-start"
+                  >
+                    <div className="bg-black/30 px-4 py-3 rounded-2xl">
+                      <div className="flex items-center space-x-2">
+                        <div className="typing-indicator">
+                          <div className="typing-dot"></div>
+                          <div className="typing-dot"></div>
+                          <div className="typing-dot"></div>
+                        </div>
+                        <span className="text-xs text-purple-300">
+                          AI is thinking...
+                        </span>
+                      </div>
+                    </div>
+                  </motion.div>
+                )}
+              </div>
+            )}
+            <div ref={messagesEndRef} />
+          </div>
+
+          {/* Input Area */}
+          <div className="relative">
+            <div className="flex items-center space-x-3">
+              <button className="p-3 bg-white/10 hover:bg-white/20 rounded-xl transition-all duration-200">
+                <Plus className="w-5 h-5 text-white" />
+              </button>
+
+              <div className="flex-1 relative">
+                <input
+                  type="text"
+                  value={newMessage}
+                  onChange={(e) => setNewMessage(e.target.value)}
+                  onKeyPress={handleKeyPress}
+                  placeholder="Tell the AI what you want to build..."
+                  className="w-full px-6 py-4 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500/50 focus:border-transparent"
+                />
+              </div>
+
+              <button
+                onClick={handleSendMessage}
+                disabled={!newMessage.trim()}
+                className="p-4 bg-white text-black rounded-xl hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
+              >
+                <Send className="w-5 h-5" />
+              </button>
             </div>
-          </motion.div>
-        )}
-        <div ref={messagesEndRef} />
+          </div>
+        </motion.div>
+
+        {/* Quick Actions */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4 }}
+          className="flex justify-center space-x-4"
+        >
+          {quickActions.map((action, index) => (
+            <motion.button
+              key={action.label}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 * index }}
+              className="flex flex-col items-center space-y-2 p-4 bg-white/5 hover:bg-white/10 rounded-xl border border-white/10 hover:border-white/20 transition-all duration-200 group"
+            >
+              <div
+                className={`w-10 h-10 bg-gradient-to-br ${action.color} rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-200`}
+              >
+                <action.icon className="w-5 h-5 text-white" />
+              </div>
+              <span className="text-sm text-gray-300 group-hover:text-white transition-colors">
+                {action.label}
+              </span>
+            </motion.button>
+          ))}
+        </motion.div>
       </div>
-
-      {/* Input */}
-      <motion.div
-        className="glass-card rounded-b-2xl p-6 border border-purple-500/20 border-t-0"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-      >
-        <div className="flex items-center space-x-3">
-          <div className="flex items-center space-x-2">
-            <motion.button
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-              className="p-3 glass-light rounded-xl hover:bg-purple-500/20 transition-all duration-300"
-            >
-              <Paperclip className="w-5 h-5 text-gray-400" />
-            </motion.button>
-            <motion.button
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-              className="p-3 glass-light rounded-xl hover:bg-purple-500/20 transition-all duration-300"
-            >
-              <Code className="w-5 h-5 text-gray-400" />
-            </motion.button>
-          </div>
-
-          <div className="flex-1 relative">
-            <input
-              type="text"
-              value={newMessage}
-              onChange={(e) => setNewMessage(e.target.value)}
-              onKeyPress={handleKeyPress}
-              placeholder="Ask your AI team anything..."
-              className="w-full px-6 py-4 glass-light border border-purple-500/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500/50 text-white placeholder-gray-400 transition-all duration-300"
-            />
-          </div>
-
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={handleSendMessage}
-            disabled={!newMessage.trim()}
-            className="p-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-xl hover:from-purple-600 hover:to-pink-600 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            <Send className="w-5 h-5" />
-          </motion.button>
-        </div>
-      </motion.div>
     </div>
   );
 }
