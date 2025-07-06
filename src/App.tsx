@@ -18,6 +18,7 @@ import { DesignPage } from "./pages/DesignPage";
 import { Settings } from "./components/Settings";
 import { ApiKeySetup } from "./components/ApiKeySetup";
 import { useStore } from "./store/useStore";
+import { AppMemoryProvider } from "./contexts/AppMemoryContext";
 
 const queryClient = new QueryClient();
 
