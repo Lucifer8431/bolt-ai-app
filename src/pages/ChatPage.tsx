@@ -115,7 +115,12 @@ export function ChatPage() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
                   onClick={() => setNewMessage(prompt)}
-                  className="p-4 bg-gray-800 hover:bg-gray-700 rounded-xl border border-gray-700 hover:border-gray-600 transition-all duration-200 text-left group"
+                  className="p-4 rounded-xl border border-purple-500/30 hover:border-purple-500/50 transition-all duration-200 text-left group hover:scale-105"
+                  style={{
+                    background:
+                      "linear-gradient(135deg, rgba(139, 92, 246, 0.8), rgba(168, 85, 247, 0.8))",
+                    boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+                  }}
                 >
                   <p className="text-sm text-gray-300 group-hover:text-white transition-colors">
                     "{prompt}"
