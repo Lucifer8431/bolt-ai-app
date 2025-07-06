@@ -113,12 +113,33 @@ export function ChatWindow() {
               <Brain className="w-8 h-8 text-purple-400" />
             </div>
             <h3 className="text-xl font-semibold text-white mb-2">
-              Start a conversation
+              Welcome to your AI Team!
             </h3>
-            <p className="text-gray-400 max-w-md mx-auto">
+            <p className="text-gray-400 max-w-md mx-auto mb-6">
               Ask your AI team anything - from code generation to project
               planning, they're here to help.
             </p>
+
+            {/* Quick starter prompts */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 max-w-2xl mx-auto">
+              {[
+                "Help me build a React component",
+                "Design a landing page layout",
+                "Create a project timeline",
+                "Write unit tests for my code",
+              ].map((prompt, index) => (
+                <motion.button
+                  key={index}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.1 * index }}
+                  onClick={() => setNewMessage(prompt)}
+                  className="p-3 glass-light border border-purple-500/20 rounded-lg text-sm text-gray-300 hover:bg-purple-500/10 hover:border-purple-500/30 transition-all duration-300 text-left"
+                >
+                  "{prompt}"
+                </motion.button>
+              ))}
+            </div>
           </motion.div>
         )}
 
