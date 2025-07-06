@@ -20,7 +20,7 @@ import React from 'react';
 
 function App() {
   const [count, setCount] = React.useState(0);
-  
+
   return (
     <div className="app">
       <h1>Hello, World!</h1>
@@ -61,7 +61,14 @@ export default App;`);
   return (
     <div className="h-full flex">
       {/* File Explorer */}
-      <div className="w-64 bg-gray-900 border-r border-gray-700 flex flex-col">
+      <div
+        className="w-64 border-r border-purple-500/30 flex flex-col"
+        style={{
+          background:
+            "linear-gradient(135deg, rgba(139, 92, 246, 0.9), rgba(168, 85, 247, 0.9))",
+          boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+        }}
+      >
         <div className="p-4 border-b border-gray-700">
           <div className="flex items-center justify-between">
             <h3 className="text-white font-medium">Files</h3>
