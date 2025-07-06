@@ -1,18 +1,28 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Send, Paperclip, Smile, Code, Image, Zap, Brain, Sparkles, MessageCircle } from 'lucide-react';
-import { useChat } from '../hooks/useChat';
-import { teamMembers } from '../data/teamMembers';
-import { Message } from '../types';
-import { format } from 'date-fns';
+import React, { useState, useRef, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  Send,
+  Paperclip,
+  Smile,
+  Code,
+  Image,
+  Zap,
+  Brain,
+  Sparkles,
+  MessageCircle,
+} from "lucide-react";
+import { useChat } from "../hooks/useChat";
+import { teamMembers } from "../data/teamMembers";
+import { Message } from "../types";
+import { format } from "date-fns";
 
 export function ChatWindow() {
   const { messages, isTyping, sendMessage } = useChat();
-  const [newMessage, setNewMessage] = useState('');
+  const [newMessage, setNewMessage] = useState("");
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
   useEffect(() => {
@@ -21,24 +31,26 @@ export function ChatWindow() {
 
   const handleSendMessage = () => {
     if (newMessage.trim()) {
-      sendMessage(newMessage, 'user');
-      setNewMessage('');
+      sendMessage(newMessage, "user");
+      setNewMessage("");
     }
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter' && !e.shiftKey) {
+    if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
       handleSendMessage();
     }
   };
 
   const getSenderInfo = (senderId: string) => {
-    if (senderId === 'user') {
-      return { name: 'You', avatar: '👤', isUser: true };
+    if (senderId === "user") {
+      return { name: "You", avatar: "👤", isUser: true };
     }
-    const member = teamMembers.find(m => m.id === senderId);
-    return member ? { name: member.name, avatar: member.avatar, isUser: false } : null;
+    const member = teamMembers.find((m) => m.id === senderId);
+    return member
+      ? { name: member.name, avatar: member.avatar, isUser: false }
+      : null;
   };
 
   return (
@@ -56,13 +68,16 @@ export function ChatWindow() {
             </div>
             <div>
               <h1 className="text-2xl font-bold gradient-text">AI Chat Hub</h1>
-              <p className="text-gray-400 flex items-center space-x-2">
+              <div className="text-gray-400 flex items-center space-x-2">
                 <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
-                <span>{teamMembers.filter(m => m.status === 'online').length} agents online</span>
-              </p>
+                <span>
+                  {teamMembers.filter((m) => m.status === "online").length}{" "}
+                  agents online
+                </span>
+              </div>
             </div>
           </div>
-          
+
           <div className="flex items-center space-x-2">
             {teamMembers.slice(0, 4).map((member, index) => (
               <motion.div
@@ -75,9 +90,11 @@ export function ChatWindow() {
                 <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center text-sm">
                   {member.avatar}
                 </div>
-                <div className={`absolute -bottom-1 -right-1 w-3 h-3 ${
-                  member.status === 'online' ? 'bg-green-400' : 'bg-gray-500'
-                } rounded-full border border-gray-800`} />
+                <div
+                  className={`absolute -bottom-1 -right-1 w-3 h-3 ${
+                    member.status === "online" ? "bg-green-400" : "bg-gray-500"
+                  } rounded-full border border-gray-800`}
+                />
               </motion.div>
             ))}
           </div>
@@ -95,9 +112,12 @@ export function ChatWindow() {
             <div className="w-16 h-16 bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
               <Brain className="w-8 h-8 text-purple-400" />
             </div>
-            <h3 className="text-xl font-semibold text-white mb-2">Start a conversation</h3>
+            <h3 className="text-xl font-semibold text-white mb-2">
+              Start a conversation
+            </h3>
             <p className="text-gray-400 max-w-md mx-auto">
-              Ask your AI team anything - from code generation to project planning, they're here to help.
+              Ask your AI team anything - from code generation to project
+              planning, they're here to help.
             </p>
           </motion.div>
         )}
@@ -114,29 +134,37 @@ export function ChatWindow() {
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, y: -20, scale: 0.95 }}
                 transition={{ duration: 0.4, delay: index * 0.05 }}
-                className={`flex ${sender.isUser ? 'justify-end' : 'justify-start'}`}
+                className={`flex ${sender.isUser ? "justify-end" : "justify-start"}`}
               >
-                <div className={`max-w-xs lg:max-w-md ${sender.isUser ? 'order-2' : 'order-1'}`}>
-                  <div className={`relative p-4 rounded-2xl ${
-                    sender.isUser 
-                      ? 'bg-gradient-to-br from-purple-500 to-pink-500 text-white ml-4' 
-                      : 'glass-light border border-purple-500/20 text-gray-200 mr-4'
-                  }`}>
+                <div
+                  className={`max-w-xs lg:max-w-md ${sender.isUser ? "order-2" : "order-1"}`}
+                >
+                  <div
+                    className={`relative p-4 rounded-2xl ${
+                      sender.isUser
+                        ? "bg-gradient-to-br from-purple-500 to-pink-500 text-white ml-4"
+                        : "glass-light border border-purple-500/20 text-gray-200 mr-4"
+                    }`}
+                  >
                     {!sender.isUser && (
                       <div className="flex items-center space-x-2 mb-2">
                         <span className="text-lg">{sender.avatar}</span>
-                        <span className="text-sm font-medium text-purple-400">{sender.name}</span>
+                        <span className="text-sm font-medium text-purple-400">
+                          {sender.name}
+                        </span>
                         <Brain className="w-3 h-3 text-purple-400" />
                       </div>
                     )}
-                    
+
                     <p className="text-sm leading-relaxed">{message.content}</p>
-                    
+
                     <div className="flex items-center justify-between mt-3">
-                      <p className={`text-xs ${
-                        sender.isUser ? 'text-purple-100' : 'text-gray-400'
-                      }`}>
-                        {format(message.timestamp, 'HH:mm')}
+                      <p
+                        className={`text-xs ${
+                          sender.isUser ? "text-purple-100" : "text-gray-400"
+                        }`}
+                      >
+                        {format(message.timestamp, "HH:mm")}
                       </p>
                     </div>
                   </div>
