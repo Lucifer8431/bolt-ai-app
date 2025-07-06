@@ -209,7 +209,11 @@ export function ProjectsPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1 }}
-              className="bg-gray-800 rounded-xl p-6 border border-gray-700 hover:border-gray-600 transition-all duration-200 group cursor-pointer"
+              className="rounded-xl p-6 border border-purple-500/30 hover:border-purple-500/50 transition-all duration-200 group cursor-pointer hover:scale-105"
+              style={{
+                background: "linear-gradient(135deg, #8b5cf6, #a855f7)",
+                boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+              }}
             >
               {/* Project Header */}
               <div className="flex items-start justify-between mb-4">
