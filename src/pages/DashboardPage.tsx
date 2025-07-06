@@ -249,7 +249,11 @@ export function DashboardPage() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.4 }}
-        className="bg-gray-800 rounded-xl p-6 border border-gray-700"
+        className="rounded-xl p-6 border border-purple-500/20"
+        style={{
+          background: "linear-gradient(135deg, #8b5cf6, #a855f7)",
+          boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+        }}
       >
         <h2 className="text-xl font-semibold text-white mb-6 flex items-center">
           <TrendingUp className="w-5 h-5 text-blue-400 mr-2" />
