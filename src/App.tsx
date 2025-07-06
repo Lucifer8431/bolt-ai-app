@@ -69,22 +69,24 @@ function AppContent() {
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <Router>
-        <AppContent />
-        <Toaster
-          position="top-right"
-          toastOptions={{
-            duration: 4000,
-            style: {
-              background: "rgba(17, 24, 39, 0.95)",
-              backdropFilter: "blur(20px)",
-              border: "1px solid rgba(139, 92, 246, 0.3)",
-              borderRadius: "12px",
-              color: "#f9fafb",
-            },
-          }}
-        />
-      </Router>
+      <AppMemoryProvider>
+        <Router>
+          <AppContent />
+          <Toaster
+            position="top-right"
+            toastOptions={{
+              duration: 4000,
+              style: {
+                background: "rgba(17, 24, 39, 0.95)",
+                backdropFilter: "blur(20px)",
+                border: "1px solid rgba(139, 92, 246, 0.3)",
+                borderRadius: "12px",
+                color: "#f9fafb",
+              },
+            }}
+          />
+        </Router>
+      </AppMemoryProvider>
     </QueryClientProvider>
   );
 }
