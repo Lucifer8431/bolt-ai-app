@@ -175,7 +175,12 @@ export function DashboardPage() {
               <Link
                 key={action.title}
                 to={action.href}
-                className="group p-4 bg-gray-700 hover:bg-gray-600 rounded-lg border border-gray-600 hover:border-gray-500 transition-all duration-200"
+                className="group p-4 rounded-lg border border-purple-500/30 hover:border-purple-500/50 transition-all duration-200 hover:scale-105"
+                style={{
+                  background:
+                    "linear-gradient(135deg, rgba(139, 92, 246, 0.8), rgba(168, 85, 247, 0.8))",
+                  boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+                }}
               >
                 <div
                   className={`w-10 h-10 bg-gradient-to-br ${action.color} rounded-lg flex items-center justify-center mb-3 group-hover:scale-110 transition-transform`}
