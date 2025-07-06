@@ -3,12 +3,19 @@ import { motion, AnimatePresence } from "framer-motion";
 import {
   Send,
   Plus,
-  BarChart3,
-  Palette,
-  CreditCard,
-  Presentation,
-  MoreHorizontal,
+  Mic,
+  Image,
+  Code2,
+  Zap,
   Sparkles,
+  ArrowUp,
+  Bot,
+  User,
+  Globe,
+  Layers,
+  Palette,
+  Database,
+  Settings,
 } from "lucide-react";
 import { useChat } from "../hooks/useChat";
 import { teamMembers } from "../data/teamMembers";
@@ -51,158 +58,151 @@ export function ChatWindow() {
       : null;
   };
 
-  return (
-    <div
-      style={{
-        background: "#000000",
-        minHeight: "100vh",
-        width: "100%",
-        position: "relative",
-        overflow: "hidden",
-      }}
-    >
-      {/* Exact MGX Layout */}
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          minHeight: "100vh",
-          padding: "20px",
-          position: "relative",
-        }}
-      >
-        {/* Header Text - Exact Match */}
-        <div style={{ textAlign: "center", marginBottom: "60px" }}>
-          <h1
-            style={{
-              fontSize: "72px",
-              fontWeight: "700",
-              color: "#ffffff",
-              margin: "0 0 16px 0",
-              letterSpacing: "-0.02em",
-              lineHeight: "1.1",
-            }}
-          >
-            Dream, Chat, Create
-          </h1>
+  const quickPrompts = [
+    "Build a modern landing page with React and Tailwind",
+    "Create a REST API with Node.js and Express",
+    "Design a mobile app interface for e-commerce",
+    "Write unit tests for my React components",
+  ];
 
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              gap: "8px",
-            }}
-          >
-            <span
-              style={{
-                fontSize: "24px",
-                color: "#ffffff",
-                fontWeight: "400",
-              }}
-            >
-              Your 24/7 AI Team
-            </span>
-            <div style={{ display: "flex", gap: "4px", marginLeft: "8px" }}>
-              <div
-                style={{
-                  width: "8px",
-                  height: "8px",
-                  borderRadius: "50%",
-                  background: "#3b82f6",
-                }}
-              ></div>
-              <div
-                style={{
-                  width: "8px",
-                  height: "8px",
-                  borderRadius: "50%",
-                  background: "#8b5cf6",
-                }}
-              ></div>
-              <div
-                style={{
-                  width: "8px",
-                  height: "8px",
-                  borderRadius: "50%",
-                  background: "#ec4899",
-                }}
-              ></div>
-              <div
-                style={{
-                  width: "8px",
-                  height: "8px",
-                  borderRadius: "50%",
-                  background: "#10b981",
-                }}
-              ></div>
-              <div
-                style={{
-                  width: "8px",
-                  height: "8px",
-                  borderRadius: "50%",
-                  background: "#f59e0b",
-                }}
-              ></div>
+  const toolCards = [
+    {
+      icon: Globe,
+      title: "Web App",
+      subtitle: "Full-stack application",
+      gradient: "from-blue-500 to-cyan-500",
+    },
+    {
+      icon: Layers,
+      title: "UI Component",
+      subtitle: "Reusable design system",
+      gradient: "from-purple-500 to-pink-500",
+    },
+    {
+      icon: Database,
+      title: "API Service",
+      subtitle: "Backend & database",
+      gradient: "from-green-500 to-emerald-500",
+    },
+    {
+      icon: Palette,
+      title: "Brand Design",
+      subtitle: "Logo & visual identity",
+      gradient: "from-orange-500 to-red-500",
+    },
+  ];
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-gray-950 via-gray-900 to-gray-950 flex flex-col relative overflow-hidden">
+      {/* Animated background elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-pink-500/5 rounded-full blur-3xl animate-pulse" />
+      </div>
+
+      {/* Header */}
+      <motion.div
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="relative z-10 p-6 border-b border-white/5"
+      >
+        <div className="max-w-4xl mx-auto flex items-center justify-between">
+          <div className="flex items-center space-x-4">
+            <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center shadow-lg">
+              <Zap className="w-6 h-6 text-white" />
+            </div>
+            <div>
+              <h1 className="text-2xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+                AI Workshop
+              </h1>
+              <div className="flex items-center space-x-2 text-sm text-gray-400">
+                <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
+                <span>5 AI agents ready</span>
+              </div>
             </div>
           </div>
-        </div>
 
-        {/* Chat Container - Exact Match */}
-        <div
-          style={{
-            width: "560px",
-            height: "320px",
-            background:
-              "linear-gradient(135deg, rgba(88, 28, 135, 0.4) 0%, rgba(29, 78, 216, 0.4) 100%)",
-            borderRadius: "24px",
-            border: "1px solid rgba(255, 255, 255, 0.1)",
-            padding: "32px",
-            marginBottom: "40px",
-            backdropFilter: "blur(20px)",
-            position: "relative",
-          }}
-        >
-          {/* Messages Area */}
-          <div
-            style={{
-              height: "180px",
-              marginBottom: "24px",
-              position: "relative",
-            }}
-          >
+          <button className="p-3 bg-white/5 hover:bg-white/10 rounded-xl border border-white/10 transition-all duration-200">
+            <Settings className="w-5 h-5 text-gray-400" />
+          </button>
+        </div>
+      </motion.div>
+
+      {/* Main Content */}
+      <div className="flex-1 flex">
+        {/* Chat Area */}
+        <div className="flex-1 flex flex-col max-w-4xl mx-auto w-full">
+          {/* Messages */}
+          <div className="flex-1 overflow-y-auto px-6 py-8">
             {messages.length === 0 ? (
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  height: "100%",
-                  flexDirection: "column",
-                }}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="flex flex-col items-center justify-center h-full text-center space-y-8"
               >
-                <Sparkles
-                  style={{
-                    width: "32px",
-                    height: "32px",
-                    color: "#a855f7",
-                    marginBottom: "16px",
-                  }}
-                />
-                <span style={{ color: "#d1d5db", fontSize: "16px" }}>
-                  Start your conversation...
-                </span>
-              </div>
+                <div className="relative">
+                  <div className="w-24 h-24 bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-3xl flex items-center justify-center backdrop-blur-sm border border-white/10">
+                    <Sparkles className="w-12 h-12 text-purple-400" />
+                  </div>
+                  <div className="absolute -top-2 -right-2 w-6 h-6 bg-green-400 rounded-full flex items-center justify-center">
+                    <div className="w-2 h-2 bg-white rounded-full animate-ping" />
+                  </div>
+                </div>
+
+                <div className="space-y-4">
+                  <h2 className="text-3xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+                    What shall we build today?
+                  </h2>
+                  <p className="text-lg text-gray-400 max-w-md">
+                    Your AI development team is ready to help you create
+                    anything from web apps to APIs.
+                  </p>
+                </div>
+
+                {/* Quick Prompts */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 w-full max-w-2xl">
+                  {quickPrompts.map((prompt, index) => (
+                    <motion.button
+                      key={index}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: index * 0.1 }}
+                      onClick={() => setNewMessage(prompt)}
+                      className="p-4 bg-white/5 hover:bg-white/10 rounded-xl border border-white/10 hover:border-white/20 transition-all duration-200 text-left group"
+                    >
+                      <p className="text-sm text-gray-300 group-hover:text-white transition-colors">
+                        "{prompt}"
+                      </p>
+                    </motion.button>
+                  ))}
+                </div>
+
+                {/* Tool Cards */}
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 w-full max-w-3xl">
+                  {toolCards.map((tool, index) => (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: 0.5 + index * 0.1 }}
+                      className="p-4 bg-white/5 rounded-xl border border-white/10 hover:border-white/20 hover:bg-white/10 transition-all duration-300 cursor-pointer group"
+                    >
+                      <div
+                        className={`w-12 h-12 bg-gradient-to-br ${tool.gradient} rounded-xl flex items-center justify-center mb-3 group-hover:scale-110 transition-transform duration-200`}
+                      >
+                        <tool.icon className="w-6 h-6 text-white" />
+                      </div>
+                      <h3 className="font-semibold text-white mb-1">
+                        {tool.title}
+                      </h3>
+                      <p className="text-xs text-gray-400">{tool.subtitle}</p>
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
             ) : (
-              <div
-                style={{
-                  height: "100%",
-                  overflowY: "auto",
-                  paddingRight: "8px",
-                }}
-              >
+              <div className="space-y-6">
                 <AnimatePresence>
                   {messages.map((message, index) => {
                     const sender = getSenderInfo(message.senderId);
@@ -211,42 +211,48 @@ export function ChatWindow() {
                     return (
                       <motion.div
                         key={message.id}
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -10 }}
-                        style={{
-                          display: "flex",
-                          justifyContent: sender.isUser
-                            ? "flex-end"
-                            : "flex-start",
-                          marginBottom: "12px",
-                        }}
+                        initial={{ opacity: 0, y: 20, scale: 0.95 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, y: -20, scale: 0.95 }}
+                        transition={{ duration: 0.3 }}
+                        className={`flex items-start space-x-4 ${sender.isUser ? "flex-row-reverse space-x-reverse" : ""}`}
                       >
                         <div
-                          style={{
-                            maxWidth: "70%",
-                            padding: "12px 16px",
-                            borderRadius: "16px",
-                            background: sender.isUser
-                              ? "rgba(255, 255, 255, 0.2)"
-                              : "rgba(0, 0, 0, 0.3)",
-                            color: "#ffffff",
-                            fontSize: "14px",
-                            lineHeight: "1.4",
-                          }}
+                          className={`w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 ${
+                            sender.isUser
+                              ? "bg-gradient-to-br from-purple-500 to-pink-500"
+                              : "bg-white/10 border border-white/20"
+                          }`}
                         >
-                          {!sender.isUser && (
-                            <div
-                              style={{
-                                fontSize: "12px",
-                                color: "#a855f7",
-                                marginBottom: "4px",
-                              }}
-                            >
-                              {sender.name}
-                            </div>
+                          {sender.isUser ? (
+                            <User className="w-5 h-5 text-white" />
+                          ) : (
+                            <Bot className="w-5 h-5 text-purple-400" />
                           )}
-                          {message.content}
+                        </div>
+
+                        <div
+                          className={`flex-1 max-w-2xl ${sender.isUser ? "text-right" : ""}`}
+                        >
+                          <div
+                            className={`p-4 rounded-2xl ${
+                              sender.isUser
+                                ? "bg-gradient-to-br from-purple-500/90 to-pink-500/90 text-white ml-8"
+                                : "bg-white/5 border border-white/10 text-gray-100 mr-8"
+                            }`}
+                          >
+                            {!sender.isUser && (
+                              <div className="flex items-center space-x-2 mb-2">
+                                <span className="text-sm font-medium text-purple-400">
+                                  {sender.name}
+                                </span>
+                                <div className="w-1.5 h-1.5 bg-green-400 rounded-full" />
+                              </div>
+                            )}
+                            <p className="leading-relaxed whitespace-pre-wrap">
+                              {message.content}
+                            </p>
+                          </div>
                         </div>
                       </motion.div>
                     );
@@ -255,20 +261,25 @@ export function ChatWindow() {
 
                 {isTyping && (
                   <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    style={{ display: "flex", justifyContent: "flex-start" }}
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.8 }}
+                    className="flex items-start space-x-4"
                   >
-                    <div
-                      style={{
-                        padding: "12px 16px",
-                        borderRadius: "16px",
-                        background: "rgba(0, 0, 0, 0.3)",
-                        color: "#a855f7",
-                        fontSize: "12px",
-                      }}
-                    >
-                      AI is typing...
+                    <div className="w-10 h-10 bg-white/10 border border-white/20 rounded-xl flex items-center justify-center">
+                      <Bot className="w-5 h-5 text-purple-400" />
+                    </div>
+                    <div className="bg-white/5 border border-white/10 rounded-2xl p-4 mr-8">
+                      <div className="flex items-center space-x-3">
+                        <div className="typing-indicator">
+                          <div className="typing-dot bg-purple-400"></div>
+                          <div className="typing-dot bg-purple-400"></div>
+                          <div className="typing-dot bg-purple-400"></div>
+                        </div>
+                        <span className="text-sm text-purple-400">
+                          AI is thinking...
+                        </span>
+                      </div>
                     </div>
                   </motion.div>
                 )}
@@ -277,135 +288,66 @@ export function ChatWindow() {
             <div ref={messagesEndRef} />
           </div>
 
-          {/* Input Area - Exact Match */}
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: "12px",
-              position: "absolute",
-              bottom: "32px",
-              left: "32px",
-              right: "32px",
-            }}
+          {/* Input Area */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="p-6 border-t border-white/5"
           >
-            <button
-              style={{
-                width: "40px",
-                height: "40px",
-                borderRadius: "12px",
-                background: "rgba(255, 255, 255, 0.1)",
-                border: "none",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                cursor: "pointer",
-              }}
-            >
-              <Plus
-                style={{ width: "20px", height: "20px", color: "#ffffff" }}
-              />
-            </button>
+            <div className="max-w-4xl mx-auto">
+              <div className="relative">
+                <div className="flex items-end space-x-4 p-4 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10">
+                  {/* Action Buttons */}
+                  <div className="flex space-x-2">
+                    <button className="p-3 bg-white/10 hover:bg-white/20 rounded-xl transition-all duration-200 group">
+                      <Plus className="w-5 h-5 text-gray-400 group-hover:text-white" />
+                    </button>
+                    <button className="p-3 bg-white/10 hover:bg-white/20 rounded-xl transition-all duration-200 group">
+                      <Image className="w-5 h-5 text-gray-400 group-hover:text-white" />
+                    </button>
+                    <button className="p-3 bg-white/10 hover:bg-white/20 rounded-xl transition-all duration-200 group">
+                      <Code2 className="w-5 h-5 text-gray-400 group-hover:text-white" />
+                    </button>
+                  </div>
 
-            <input
-              type="text"
-              value={newMessage}
-              onChange={(e) => setNewMessage(e.target.value)}
-              onKeyPress={handleKeyPress}
-              placeholder="Tell the AI what you want to build..."
-              style={{
-                flex: 1,
-                height: "40px",
-                background: "rgba(255, 255, 255, 0.1)",
-                border: "1px solid rgba(255, 255, 255, 0.2)",
-                borderRadius: "12px",
-                padding: "0 16px",
-                color: "#ffffff",
-                fontSize: "14px",
-                outline: "none",
-              }}
-            />
+                  {/* Text Input */}
+                  <div className="flex-1 relative">
+                    <textarea
+                      value={newMessage}
+                      onChange={(e) => setNewMessage(e.target.value)}
+                      onKeyPress={handleKeyPress}
+                      placeholder="Describe what you want to build..."
+                      rows={1}
+                      className="w-full bg-transparent text-white placeholder-gray-400 resize-none outline-none py-3 px-4 max-h-32"
+                      style={{ minHeight: "48px" }}
+                    />
+                  </div>
 
-            <button
-              onClick={handleSendMessage}
-              disabled={!newMessage.trim()}
-              style={{
-                width: "40px",
-                height: "40px",
-                borderRadius: "12px",
-                background: "#ffffff",
-                border: "none",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                cursor: newMessage.trim() ? "pointer" : "not-allowed",
-                opacity: newMessage.trim() ? 1 : 0.5,
-              }}
-            >
-              <Send
-                style={{ width: "18px", height: "18px", color: "#000000" }}
-              />
-            </button>
-          </div>
-        </div>
+                  {/* Send Button */}
+                  <button
+                    onClick={handleSendMessage}
+                    disabled={!newMessage.trim()}
+                    className={`p-3 rounded-xl transition-all duration-200 ${
+                      newMessage.trim()
+                        ? "bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white"
+                        : "bg-white/10 text-gray-500 cursor-not-allowed"
+                    }`}
+                  >
+                    <ArrowUp className="w-5 h-5" />
+                  </button>
+                </div>
 
-        {/* Quick Actions - Exact Match */}
-        <div
-          style={{
-            display: "flex",
-            gap: "16px",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          {[
-            { icon: BarChart3, label: "Dashboard", color: "#3b82f6" },
-            { icon: Palette, label: "Startup UI", color: "#8b5cf6" },
-            { icon: CreditCard, label: "Business Card", color: "#10b981" },
-            { icon: Presentation, label: "PPT", color: "#f59e0b" },
-            { icon: MoreHorizontal, label: "More", color: "#6b7280" },
-          ].map((action, index) => (
-            <button
-              key={action.label}
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                gap: "8px",
-                padding: "16px 12px",
-                background: "rgba(255, 255, 255, 0.05)",
-                border: "1px solid rgba(255, 255, 255, 0.1)",
-                borderRadius: "12px",
-                cursor: "pointer",
-                minWidth: "80px",
-              }}
-            >
-              <div
-                style={{
-                  width: "32px",
-                  height: "32px",
-                  borderRadius: "8px",
-                  background: action.color,
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
-                <action.icon
-                  style={{ width: "18px", height: "18px", color: "#ffffff" }}
-                />
+                {/* Voice Input */}
+                <button className="absolute -top-6 right-4 p-2 bg-white/10 hover:bg-white/20 rounded-lg transition-all duration-200">
+                  <Mic className="w-4 h-4 text-gray-400" />
+                </button>
               </div>
-              <span
-                style={{
-                  fontSize: "12px",
-                  color: "#d1d5db",
-                  fontWeight: "400",
-                }}
-              >
-                {action.label}
-              </span>
-            </button>
-          ))}
+
+              <p className="text-xs text-gray-500 text-center mt-3">
+                Press Enter to send, Shift+Enter for new line
+              </p>
+            </div>
+          </motion.div>
         </div>
       </div>
     </div>
