@@ -73,24 +73,25 @@ export function AppMemoryProvider({ children }: { children: ReactNode }) {
     }
   }, [state]);
 
-  const updateCurrentPage = (page: string) => {
+  const updateCurrentPage = useCallback((page: string) => {
     setState((prev) => ({ ...prev, currentPage: page }));
-  };
+  }, []);
 
-  const toggleSidebar = () => {
+  const toggleSidebar = useCallback(() => {
     setState((prev) => ({ ...prev, sidebarCollapsed: !prev.sidebarCollapsed }));
-  };
+  }, []);
 
-  const updateUserPreferences = (
-    preferences: Partial<AppMemoryState["userPreferences"]>,
-  ) => {
-    setState((prev) => ({
-      ...prev,
-      userPreferences: { ...prev.userPreferences, ...preferences },
-    }));
-  };
+  const updateUserPreferences = useCallback(
+    (preferences: Partial<AppMemoryState["userPreferences"]>) => {
+      setState((prev) => ({
+        ...prev,
+        userPreferences: { ...prev.userPreferences, ...preferences },
+      }));
+    },
+    [],
+  );
 
-  const addRecentProject = (projectId: string) => {
+  const addRecentProject = useCallback((projectId: string) => {
     setState((prev) => ({
       ...prev,
       recentProjects: [
@@ -98,12 +99,12 @@ export function AppMemoryProvider({ children }: { children: ReactNode }) {
         ...prev.recentProjects.filter((id) => id !== projectId),
       ].slice(0, 5), // Keep only 5 recent projects
     }));
-  };
+  }, []);
 
-  const clearMemory = () => {
+  const clearMemory = useCallback(() => {
     setState(defaultState);
     localStorage.removeItem(STORAGE_KEY);
-  };
+  }, []);
 
   const value: AppMemoryContextType = {
     state,
