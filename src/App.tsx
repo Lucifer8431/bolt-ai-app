@@ -7,12 +7,14 @@ import {
 } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { Toaster } from "react-hot-toast";
-import { Layout } from "./components/Layout";
+import { ModernSidebar } from "./components/ModernSidebar";
 import { Hero } from "./components/Hero";
-import { Dashboard } from "./components/Dashboard";
-import { TeamView } from "./components/TeamView";
-import { ChatWindow } from "./components/ChatWindow";
-import { CodeEditor } from "./components/CodeEditor";
+import { DashboardPage } from "./pages/DashboardPage";
+import { ChatPage } from "./pages/ChatPage";
+import { AgentsPage } from "./pages/AgentsPage";
+import { EditorPage } from "./pages/EditorPage";
+import { ProjectsPage } from "./pages/ProjectsPage";
+import { DesignPage } from "./pages/DesignPage";
 import { Settings } from "./components/Settings";
 import { ApiKeySetup } from "./components/ApiKeySetup";
 import { useStore } from "./store/useStore";
@@ -41,55 +43,22 @@ function AppContent() {
   }
 
   return (
-    <Layout>
-      <Routes>
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/team" element={<TeamView />} />
-        <Route path="/chat" element={<ChatWindow />} />
-        <Route path="/editor" element={<CodeEditor />} />
-        <Route path="/settings" element={<Settings />} />
-        <Route
-          path="/projects"
-          element={
-            <div className="text-center p-8 text-gray-500">
-              Projects view coming soon...
-            </div>
-          }
-        />
-        <Route
-          path="/design"
-          element={
-            <div className="text-center p-8 text-gray-500">
-              Design System coming soon...
-            </div>
-          }
-        />
-        <Route
-          path="/research"
-          element={
-            <div className="text-center p-8 text-gray-500">
-              Research tools coming soon...
-            </div>
-          }
-        />
-        <Route
-          path="/logs"
-          element={
-            <div className="text-center p-8 text-gray-500">
-              Activity logs coming soon...
-            </div>
-          }
-        />
-        <Route
-          path="/analytics"
-          element={
-            <div className="text-center p-8 text-gray-500">
-              Analytics coming soon...
-            </div>
-          }
-        />
-      </Routes>
-    </Layout>
+    <div className="min-h-screen bg-gray-950 flex">
+      <ModernSidebar />
+      <main className="flex-1 ml-64 overflow-hidden">
+        <div className="h-screen overflow-y-auto">
+          <Routes>
+            <Route path="/dashboard" element={<DashboardPage />} />
+            <Route path="/chat" element={<ChatPage />} />
+            <Route path="/agents" element={<AgentsPage />} />
+            <Route path="/editor" element={<EditorPage />} />
+            <Route path="/projects" element={<ProjectsPage />} />
+            <Route path="/design" element={<DesignPage />} />
+            <Route path="/settings" element={<Settings />} />
+          </Routes>
+        </div>
+      </main>
+    </div>
   );
 }
 
@@ -103,11 +72,11 @@ function App() {
           toastOptions={{
             duration: 4000,
             style: {
-              background: "rgba(30, 41, 59, 0.9)",
+              background: "rgba(17, 24, 39, 0.95)",
               backdropFilter: "blur(20px)",
               border: "1px solid rgba(139, 92, 246, 0.3)",
               borderRadius: "12px",
-              color: "#e2e8f0",
+              color: "#f9fafb",
             },
           }}
         />
