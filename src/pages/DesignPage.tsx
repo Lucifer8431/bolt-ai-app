@@ -129,7 +129,12 @@ export function DesignPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1 }}
-              className="p-4 bg-gray-700 hover:bg-gray-600 rounded-lg border border-gray-600 hover:border-gray-500 transition-all duration-200 group text-left"
+              className="p-4 rounded-lg border border-purple-500/30 hover:border-purple-500/50 transition-all duration-200 group text-left hover:scale-105"
+              style={{
+                background:
+                  "linear-gradient(135deg, rgba(139, 92, 246, 0.8), rgba(168, 85, 247, 0.8))",
+                boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+              }}
             >
               <div
                 className={`w-12 h-12 bg-gradient-to-br ${tool.color} rounded-lg flex items-center justify-center mb-3 group-hover:scale-110 transition-transform`}
