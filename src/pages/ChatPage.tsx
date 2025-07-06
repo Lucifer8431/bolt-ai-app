@@ -219,7 +219,14 @@ export function ChatPage() {
       {/* Input Area */}
       <div className="p-6 border-t border-gray-800">
         <div className="max-w-4xl mx-auto">
-          <div className="flex items-end space-x-4 p-4 bg-gray-800 rounded-xl border border-gray-700">
+          <div
+            className="flex items-end space-x-4 p-4 rounded-xl border border-purple-500/30"
+            style={{
+              background:
+                "linear-gradient(135deg, rgba(139, 92, 246, 0.9), rgba(168, 85, 247, 0.9))",
+              boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+            }}
+          >
             {/* Action Buttons */}
             <div className="flex space-x-2">
               <button className="p-2.5 bg-gray-700 hover:bg-gray-600 rounded-lg transition-all duration-200">
