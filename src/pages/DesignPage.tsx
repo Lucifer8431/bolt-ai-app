@@ -215,7 +215,7 @@ export function DesignPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: index * 0.1 }}
-            className={`bg-gray-800 rounded-xl border border-gray-700 hover:border-gray-600 transition-all duration-200 group cursor-pointer ${
+            className={`rounded-xl border border-purple-500/30 hover:border-purple-500/50 transition-all duration-200 group cursor-pointer hover:scale-105 ${
               viewMode === "list"
                 ? "flex items-center space-x-4 p-4"
                 : "overflow-hidden"
